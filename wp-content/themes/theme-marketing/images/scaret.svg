@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <defs>
+        <style>
+            .cls-1{fill:#878787}.cls-2{fill:none}
+        </style>
+    </defs>
+    <g id="Group_347" data-name="Group 347" transform="translate(-133 -53)">
+        <path id="Union_3" d="M0 12V0h1.5v10.5H12V12z" class="cls-1" data-name="Union 3" transform="rotate(-135 87.709 6.708)"/>
+        <path id="Rectangle_235" d="M0 0h24v24H0z" class="cls-2" data-name="Rectangle 235" transform="translate(133 53)"/>
+    </g>
+</svg>

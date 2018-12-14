@@ -1,0 +1,17 @@
+body {
+  font-family: 'Roboto', sans-serif; }
+
+.banner_asio_host .list_text_banner .list_text_items .item .the_content .the_des p,
+.why_work .list_why_work .item .the_content .the_des,
+.how_asio .loop_how .item .the_content .the_des {
+  font-weight: 300; }
+
+.what_kind .title_what_kind .title_textbox,
+.banner_asio_host .list_text_banner .list_text_items .the_title
+.what_kind .what_kind_thumbnail .item .the_content .the_title,
+.why_work .the_title_register .title_textbox,
+.why_work .list_why_work .item .the_content .the_title,
+.how_asio .the_title_how_asio .title_textbox,
+.how_asio .loop_how_image .item .the_text .the_title,
+.how_asio .loop_how .item .the_content .the_title {
+  font-weight: 500; }

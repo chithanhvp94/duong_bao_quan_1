@@ -1,0 +1,37 @@
+<html>
+      <head>
+        <meta charset="UTF-8">
+        <title>README.md</title>
+      </head>
+      <body>
+        <h3 id="create-new-component">Create new component</h3>
+<ul>
+<li><p>Create a class that extends <code>FW_Ext_Builder_Templates_Component</code></p>
+<pre><code class="lang-php">  class FW_Ext_Builder_Templates_Component_Demo extends FW_Ext_Builder_Templates_Component {
+      // Create all required abstract methods ...
+  }
+</code></pre>
+</li>
+<li><p>Register the class on special action</p>
+<pre><code class="lang-php">  add_action(&#39;fw_ext_builder:template_components_register&#39;, &#39;_action_fw_ext_builder_template_component_demo&#39;);
+  function _action_fw_ext_builder_template_component_demo() {
+      require_once dirname(__FILE__) .&#39;/.../path/to/class.php&#39;;
+
+      FW_Ext_Builder_Templates::register_component(
+          new FW_Ext_Builder_Templates_Component_Demo()
+      );
+  }
+</code></pre>
+</li>
+<li><p>In javascript, init the html returned by <code>FW_Ext_Builder_Templates_Component_Demo::_render()</code></p>
+<pre><code class="lang-javascript">  fwEvents.on(&#39;fw:option-type:builder:templates:init&#39;, function(data){
+      data.$elements.find(&#39;.fw-builder-templates-type-COMPONENT_TYPE .whatever-element a&#39;).on(&#39;click&#39;, function(){
+          alert(&#39;Hello World!&#39;);
+      });
+  });
+</code></pre>
+</li>
+</ul>
+
+      </body>
+    </html>

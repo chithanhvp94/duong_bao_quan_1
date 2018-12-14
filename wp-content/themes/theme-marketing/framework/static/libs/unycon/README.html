@@ -1,0 +1,94 @@
+<html>
+      <head>
+        <meta charset="UTF-8">
+        <title>README.md</title>
+      </head>
+      <body>
+        <h3 id="set-icons-groups">Set icons groups</h3>
+<p>Open <code>demo.html</code> and run the below steps in browser console.</p>
+<ol>
+<li><p>Define javascript functions</p>
+<pre><code class="lang-javascript"> var unycon = {
+     groups: typeof window.unycon != &#39;undefined&#39; &amp;&amp; unycon.groups ? unycon.groups : {},
+     icons: typeof window.unycon != &#39;undefined&#39; &amp;&amp; unycon.icons ? unycon.icons : {},
+     includeJQuery: function () {
+         if (typeof window.jQuery == &#39;undefined&#39;) {
+             var script = document.createElement(&#39;script&#39;);
+             script.src = &#39;http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js&#39;;
+             document.body.insertBefore( script, document.body.firstChild );
+         }
+     },
+     renderGroups: function () {
+         var that = this;
+
+         jQuery(&#39;.glyph .unycon + .mls&#39;).each(function(){
+             var $icon = jQuery(this),
+                 icon = jQuery.trim(jQuery(this).text()),
+                 groups = typeof that.icons[icon] == &#39;undefined&#39; ? {} : that.icons[icon].groups;
+
+             var html = [];
+
+             jQuery.each(that.groups, function(group, groupTitle){
+                 html.push(&#39;&#39;
+                     + &#39;&lt;li&gt;&#39;
+                     + &#39;&lt;label&gt;&#39;
+                     + /**/&#39;&lt;input type=&quot;checkbox&quot; value=&quot;&#39;+ group +&#39;&quot; &#39;+ (typeof groups[group] == &#39;undefined&#39; ? &#39;&#39; : &#39;checked&#39;) +&#39;&gt; &#39;
+                     + /**/groupTitle
+                     + &#39;&lt;/label&gt;&#39;
+                     + &#39;&lt;/li&gt;&#39;
+                 );
+             });
+
+             $icon.next(&#39;.icon-groups&#39;).remove(); // in case it already exists
+
+             jQuery(
+                 &#39;&lt;div class=&quot;icon-groups&quot; data-icon=&quot;&#39;+ icon +&#39;&quot; style=&quot;font-size:10px;clear:both;&quot;&gt;&#39;
+                 +&#39;&lt;ul&gt;&#39;+ html.join(&#39;&#39;) +&#39;&lt;/ul&gt;&#39;
+                 +&#39;&lt;/div&gt;&#39;
+             )
+                 .insertAfter($icon)
+                 .on(&#39;change&#39;, &#39;input[type=&quot;checkbox&quot;]&#39;, function(e){
+                     var $checkbox = jQuery(this),
+                         group = $checkbox.attr(&#39;value&#39;);
+
+                     if (typeof that.icons[icon] == &#39;undefined&#39;) {
+                         that.icons[icon] = {groups:{}};
+                     }
+
+                     if ($checkbox.prop(&#39;checked&#39;)) {
+                         that.icons[icon].groups[group] = true;
+                     } else {
+                         delete that.icons[icon].groups[group];
+                     }
+                 });
+         });
+     }
+ };
+</code></pre>
+</li>
+<li><p>Include <code>jQuery</code></p>
+<pre><code class="lang-javascript"> unycon.includeJQuery();
+</code></pre>
+</li>
+<li><p>Load groups</p>
+<pre><code class="lang-javascript"> unycon.groups = {...}; // copy from index.html source code
+</code></pre>
+</li>
+<li><p>Load icons</p>
+<pre><code class="lang-javascript"> unycon.icons = {...}; // copy from index.html source code
+</code></pre>
+</li>
+<li><p>Show checkboxes</p>
+<pre><code class="lang-javascript"> unycon.renderGroups();
+</code></pre>
+</li>
+<li><p>Set manually category checkboxes</p>
+</li>
+<li><p>Export icons</p>
+<pre><code class="lang-javascript"> JSON.stringify(unycon.icons);
+</code></pre>
+</li>
+</ol>
+
+      </body>
+    </html>
